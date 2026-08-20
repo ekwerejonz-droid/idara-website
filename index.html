@@ -382,6 +382,13 @@ nav.scrolled{
 }
 .tile-art{width:100%;transition:transform 1.1s var(--ease)}
 .tile:hover .tile-art{transform:scale(1.05)}
+/* real photo layers over the drawn art; JS fades it in only when it loads */
+.tile-photo{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .8s var(--ease),transform 1.1s var(--ease);
+}
+.tile-photo.loaded{opacity:1}
+.tile:hover .tile-photo.loaded{transform:scale(1.05)}
 .tile-cap{
   position:absolute;inset:auto 0 0 0;padding:2.2rem 1.3rem 1.1rem;
   background:linear-gradient(transparent,rgba(28,5,9,.85));
@@ -487,6 +494,31 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
   .chan a>div,.chan>div>div{min-width:0}
   .chan span{overflow-wrap:anywhere}
 }
+
+/* ============================================================
+   INSTAGRAM — "Follow the House"
+   ============================================================ */
+.gram{background:linear-gradient(180deg,#180408,var(--wine-black));border-top:1px solid var(--gold-hairline)}
+.gram-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.6rem}
+.gram-handle{
+  display:inline-flex;align-items:center;gap:.7rem;font-size:.72rem;font-weight:500;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--gold);transition:color .3s;
+}
+.gram-handle:hover{color:var(--gold-soft)}
+/* embed slot — a widget script drops in here and inherits this frame */
+.gram-embed{min-height:120px}
+/* fallback grid shown until a live feed is connected */
+.gram-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--gold-hairline);border:1px solid var(--gold-hairline)}
+.gram-cell{
+  position:relative;aspect-ratio:1;background:var(--wine-black);overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.gram-cell img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s var(--ease),transform 1s var(--ease)}
+.gram-cell img.loaded{opacity:1}
+.gram-cell:hover img.loaded{transform:scale(1.06)}
+.gram-cell .ph{color:var(--gold);opacity:.28;transition:opacity .4s}
+.gram-cell:hover .ph{opacity:.5}
+@media (max-width:900px){.gram-grid{grid-template-columns:repeat(3,1fr)}}
 
 /* cursor glow (fine pointers only) */
 #glow{
@@ -807,7 +839,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
     <h2 class="h2 reveal reveal-d1" style="margin-top:1.1rem">Recent commissions</h2>
     <div class="masonry" id="masonry">
       <!-- tiles: inline SVG art placeholders, art-directed per docs -->
-      <figure class="tile reveal" data-cap="The Royal Trunk · Commission № 041">
+      <figure class="tile reveal" data-cap="The Royal Trunk · Commission № 041" data-img="images/gallery-1.jpg">
         <svg class="tile-art" viewBox="0 0 400 500" role="img" aria-label="The Royal Trunk">
           <rect width="400" height="500" fill="#42101a"/>
           <rect x="70" y="150" width="260" height="200" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
@@ -817,7 +849,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
         </svg>
         <figcaption class="tile-cap">The Royal Trunk · № 041</figcaption>
       </figure>
-      <figure class="tile reveal" data-cap="Ninety-Nine Roses · Dawn Delivery">
+      <figure class="tile reveal" data-cap="Ninety-Nine Roses · Dawn Delivery" data-img="images/gallery-2.jpg">
         <svg class="tile-art" viewBox="0 0 400 340" role="img" aria-label="Ninety-nine roses">
           <rect width="400" height="340" fill="#F1E6D2"/>
           <g stroke="#5B0F1A" fill="none" stroke-width="1.3">
@@ -829,7 +861,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
         </svg>
         <figcaption class="tile-cap">Ninety-Nine Roses · Dawn</figcaption>
       </figure>
-      <figure class="tile reveal" data-cap="Executive Suite · Onboarding Gift">
+      <figure class="tile reveal" data-cap="Executive Suite · Onboarding Gift" data-img="images/gallery-3.jpg">
         <svg class="tile-art" viewBox="0 0 400 420" role="img" aria-label="Executive gift suite">
           <rect width="400" height="420" fill="#221418"/>
           <rect x="90" y="110" width="220" height="140" rx="2" fill="none" stroke="#D4AF37" stroke-width="1.3"/>
@@ -839,7 +871,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
         </svg>
         <figcaption class="tile-cap">Executive Suite</figcaption>
       </figure>
-      <figure class="tile reveal" data-cap="Heritage Silk · Adire Commission">
+      <figure class="tile reveal" data-cap="Heritage Silk · Adire Commission" data-img="images/gallery-4.jpg">
         <svg class="tile-art" viewBox="0 0 400 460" role="img" aria-label="Adire silk pattern">
           <rect width="400" height="460" fill="#5B0F1A"/>
           <g stroke="#E9DCC6" stroke-width="1" fill="none" opacity=".85">
@@ -849,7 +881,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
         </svg>
         <figcaption class="tile-cap">Heritage Silk · Adire</figcaption>
       </figure>
-      <figure class="tile reveal" data-cap="Champagne & Gold · Anniversary">
+      <figure class="tile reveal" data-cap="Champagne & Gold · Anniversary" data-img="images/gallery-5.jpg">
         <svg class="tile-art" viewBox="0 0 400 320" role="img" aria-label="Champagne anniversary set">
           <rect width="400" height="320" fill="#E9DCC6"/>
           <path d="M160 80v90a25 25 0 0 0 20 24v36h-18M180 230h36m-18 0v-36a25 25 0 0 0 20-24V80h-58" fill="none" stroke="#5B0F1A" stroke-width="1.4"/>
@@ -857,7 +889,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
         </svg>
         <figcaption class="tile-cap">Champagne &amp; Gold</figcaption>
       </figure>
-      <figure class="tile reveal" data-cap="The Wax Seal · House Signature">
+      <figure class="tile reveal" data-cap="The Wax Seal · House Signature" data-img="images/gallery-6.jpg">
         <svg class="tile-art" viewBox="0 0 400 400" role="img" aria-label="IDARA wax seal">
           <rect width="400" height="400" fill="#FAF5EC"/>
           <rect x="60" y="90" width="280" height="220" fill="none" stroke="#2B2024" stroke-width="1.1"/>
@@ -943,6 +975,37 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
   </div>
 </section>
 
+<!-- ============ INSTAGRAM ============ -->
+<section class="gram section-pad" id="instagram">
+  <div class="wrap">
+    <div class="gram-head">
+      <div>
+        <p class="eyebrow reveal">Follow the House</p>
+        <h2 class="h2 reveal reveal-d1" style="margin-top:1.1rem">Lately, from the atelier.</h2>
+      </div>
+      <a class="gram-handle reveal reveal-d2" href="https://instagram.com/idara.gifting" rel="noopener" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.3"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+        @idara.gifting
+      </a>
+    </div>
+
+    <!-- ▼▼ LIVE FEED SLOT — paste the Behold / SnapWidget embed snippet here ▼▼ -->
+    <div class="gram-embed reveal reveal-d1" id="gramEmbed">
+      <!-- Until a live feed is connected, this static grid shows.
+           It uses images/instagram-1.jpg … -6.jpg when those files exist. -->
+      <div class="gram-grid">
+        <div class="gram-cell" data-img="images/instagram-1.jpg"><svg class="ph" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 22 12 12 22 2 12Z" stroke="currentColor" stroke-width="1.2"/></svg></div>
+        <div class="gram-cell" data-img="images/instagram-2.jpg"><svg class="ph" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.2"/></svg></div>
+        <div class="gram-cell" data-img="images/instagram-3.jpg"><svg class="ph" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 22 12 12 22 2 12Z" stroke="currentColor" stroke-width="1.2"/><path d="M12 7 17 12 12 17 7 12Z" stroke="currentColor" stroke-width="1"/></svg></div>
+        <div class="gram-cell" data-img="images/instagram-4.jpg"><svg class="ph" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="1.2"/><path d="M4 12h16M12 4v16" stroke="currentColor" stroke-width="1"/></svg></div>
+        <div class="gram-cell" data-img="images/instagram-5.jpg"><svg class="ph" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.2"/><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1"/></svg></div>
+        <div class="gram-cell" data-img="images/instagram-6.jpg"><svg class="ph" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 22 12 12 22 2 12Z" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/></svg></div>
+      </div>
+    </div>
+    <!-- ▲▲ END LIVE FEED SLOT ▲▲ -->
+  </div>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
@@ -990,6 +1053,22 @@ burger.addEventListener('click',()=>{
 document.getElementById('navLinks').addEventListener('click',e=>{
   if(e.target.tagName==='A'){nav.classList.remove('open');burger.setAttribute('aria-expanded','false');}
 });
+
+/* ---------- real photos, with graceful fallback to the drawn art ----------
+   Drop files into /images/ and they appear automatically.
+   If a file is missing, nothing breaks — the SVG artwork simply stays. */
+function mountPhoto(el,cls){
+  const src=el.dataset.img;if(!src)return;
+  const img=new Image();
+  img.decoding='async';img.loading='lazy';
+  img.alt=el.dataset.cap||'IDARA commission';
+  img.className=cls;
+  img.onload=()=>{el.appendChild(img);requestAnimationFrame(()=>img.classList.add('loaded'));};
+  img.onerror=()=>{};              // silent: keep the placeholder art
+  img.src=src;
+}
+document.querySelectorAll('.tile[data-img]').forEach(t=>mountPhoto(t,'tile-photo'));
+document.querySelectorAll('.gram-cell[data-img]').forEach(c=>mountPhoto(c,''));
 
 /* ---------- reveal on scroll ---------- */
 const io=new IntersectionObserver(entries=>{
@@ -1039,7 +1118,10 @@ document.querySelectorAll('.tile').forEach(tile=>{
   tile.setAttribute('tabindex','0');tile.setAttribute('role','button');
   const open=()=>{
     lastFocus=tile;
-    lbArt.innerHTML=tile.querySelector('svg').outerHTML;
+    const photo=tile.querySelector('.tile-photo.loaded');
+    lbArt.innerHTML=photo
+      ? '<img src="'+photo.src+'" alt="'+(tile.dataset.cap||'')+'" style="width:100%;height:auto">'
+      : tile.querySelector('svg').outerHTML;
     lbCap.textContent=tile.dataset.cap;
     lb.classList.add('open');lbClose.focus();
   };

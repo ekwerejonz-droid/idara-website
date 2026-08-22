@@ -28,7 +28,7 @@
   --ink:#2B2024;
   --ink-soft:#5C4F52;
   --ivory-dim:rgba(250,245,236,.66);
-  --ivory-faint:rgba(250,245,236,.38);
+  --ivory-faint:rgba(250,245,236,.58);
 
   --font-display:"Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-body:"Inter", "Segoe UI", system-ui, sans-serif;
@@ -138,22 +138,32 @@ nav.scrolled{
   box-shadow:0 1px 0 var(--gold-hairline);
   padding:.8rem 0;
 }
-.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem}
-.logo{display:flex;align-items:center;gap:.85rem}
+/* nav is a full-bleed bar — override .wrap's 1180px cap so 7 links + CTA fit */
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1.75rem;max-width:1360px}
+.logo{display:flex;align-items:center;gap:.85rem;flex:none}
 .logo-mark{width:34px;height:34px;flex:none}
 .logo-word{font-family:var(--font-display);font-size:1.5rem;letter-spacing:.34em;font-weight:500;color:var(--ivory);padding-left:.34em}
-.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links{display:flex;gap:1.7rem;list-style:none;flex-wrap:nowrap}
 .nav-links a{
   font-size:.66rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--ivory-dim);
-  position:relative;padding:.3rem 0;transition:color .3s;
+  position:relative;padding:.3rem 0;transition:color .3s;white-space:nowrap;flex:none;
 }
 .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
 .nav-links a:hover{color:var(--gold)}
 .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
-.nav-cta{display:inline-block}
-.nav-burger{display:none;flex-direction:column;gap:6px;padding:.5rem}
+/* flex:none is essential — .btn sets overflow:hidden, which turns the flex
+   item's automatic min-width into 0 and lets the label clip ("Book a C…"). */
+.nav-cta{display:inline-flex;flex:none;padding:.85rem 1.6rem;font-size:.64rem;letter-spacing:.2em}
+.nav-burger{display:none;flex-direction:column;gap:6px;padding:.5rem;flex:none}
+/* tighten the bar between full-desktop and the burger breakpoint (1080px) */
+@media (max-width:1200px){
+  .nav-inner{gap:1rem}
+  .nav-links{gap:1.1rem}
+  .nav-links a{letter-spacing:.14em;font-size:.62rem}
+  .nav-cta{padding:.75rem 1rem;letter-spacing:.12em;font-size:.6rem}
+}
 .nav-burger i{display:block;width:26px;height:1px;background:var(--gold);transition:transform .4s var(--ease),opacity .3s}
-@media (max-width:960px){
+@media (max-width:1080px){
   .nav-links,.nav-cta{display:none}
   .nav-burger{display:flex}
   nav.open .nav-links{
@@ -934,13 +944,13 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
       <div class="reveal reveal-d1">
         <p class="body-dim" style="max-width:30em;margin-bottom:2rem">Reach us however feels natural — the form, a WhatsApp message, or a scheduled consultation. A concierge responds within one business hour, 8:00–20:00 WAT.</p>
         <div class="chan">
-          <a href="https://wa.me/2348000000000" rel="noopener">
+          <a href="https://wa.me/2348134796912" rel="noopener">
             <svg class="glyph" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" stroke="currentColor" stroke-width="1.2"/><path d="M9 8.5c0 4 2.5 6.5 6.5 6.5l1-2-2.2-1-1 .8c-1-.5-1.8-1.3-2.3-2.3l.8-1-1-2.2-1.8 1.2Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
-            <div><b>WhatsApp Concierge</b><span>+234 800 000 0000</span></div>
+            <div><b>WhatsApp Concierge</b><span>+234 813 479 6912</span></div>
           </a>
-          <a href="https://instagram.com/idara.gifting" rel="noopener">
+          <a href="https://instagram.com/idara_gifting" rel="noopener">
             <svg class="glyph" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.2"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
-            <div><b>Instagram</b><span>@idara.gifting</span></div>
+            <div><b>Instagram</b><span>@idara_gifting</span></div>
           </a>
           <a href="mailto:concierge@idara.ng">
             <svg class="glyph" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" stroke="currentColor" stroke-width="1.2"/><path d="m3 7 9 6 9-6" stroke="currentColor" stroke-width="1.2"/></svg>
@@ -983,9 +993,9 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
         <p class="eyebrow reveal">Follow the House</p>
         <h2 class="h2 reveal reveal-d1" style="margin-top:1.1rem">Lately, from the atelier.</h2>
       </div>
-      <a class="gram-handle reveal reveal-d2" href="https://instagram.com/idara.gifting" rel="noopener" target="_blank">
+      <a class="gram-handle reveal reveal-d2" href="https://instagram.com/idara_gifting" rel="noopener" target="_blank">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.3"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
-        @idara.gifting
+        @idara_gifting
       </a>
     </div>
 
@@ -1031,7 +1041,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
       </div>
       <div>
         <h4>Concierge</h4>
-        <ul><li><a href="https://wa.me/2348000000000" rel="noopener">WhatsApp</a></li><li><a href="https://instagram.com/idara.gifting" rel="noopener">Instagram</a></li><li><a href="mailto:concierge@idara.ng">concierge@idara.ng</a></li></ul>
+        <ul><li><a href="https://wa.me/2348134796912" rel="noopener">WhatsApp</a></li><li><a href="https://instagram.com/idara_gifting" rel="noopener">Instagram</a></li><li><a href="mailto:concierge@idara.ng">concierge@idara.ng</a></li></ul>
       </div>
     </div>
     <div class="foot-base">
@@ -1046,12 +1056,17 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
 const burger=document.getElementById('burger');
+const navLinks=document.getElementById('navLinks');
+function closeNav(){
+  nav.classList.remove('open');
+  burger.setAttribute('aria-expanded','false');
+}
 burger.addEventListener('click',()=>{
   const open=nav.classList.toggle('open');
   burger.setAttribute('aria-expanded',open);
 });
-document.getElementById('navLinks').addEventListener('click',e=>{
-  if(e.target.tagName==='A'){nav.classList.remove('open');burger.setAttribute('aria-expanded','false');}
+navLinks.addEventListener('click',e=>{
+  if(e.target.tagName==='A') closeNav();
 });
 
 /* ---------- real photos, with graceful fallback to the drawn art ----------
@@ -1114,24 +1129,67 @@ document.querySelectorAll('.faq').forEach(d=>{
 const lb=document.getElementById('lightbox'),lbArt=document.getElementById('lbArt'),
       lbCap=document.getElementById('lbCap'),lbClose=document.getElementById('lbClose');
 let lastFocus=null;
+function setPageInert(isInert){
+  Array.from(document.body.children).forEach(el=>{
+    if(el===lb || el.tagName==='SCRIPT')return;
+    if(isInert){
+      el.setAttribute('inert','');
+      el.dataset.lbInert='true';
+    } else if(el.dataset.lbInert){
+      el.removeAttribute('inert');
+      delete el.dataset.lbInert;
+    }
+  });
+}
+function openLb(tile){
+  lastFocus=tile;
+  const photo=tile.querySelector('.tile-photo.loaded');
+  lbArt.replaceChildren();
+  lbArt.setAttribute('tabindex','-1');
+  if(photo){
+    const img=document.createElement('img');
+    img.src=photo.src;
+    img.alt=tile.dataset.cap||'';
+    img.style.cssText='width:100%;height:auto;display:block';
+    lbArt.appendChild(img);
+  } else {
+    const svg=tile.querySelector('svg');
+    if(svg) lbArt.appendChild(svg.cloneNode(true));
+  }
+  lbCap.textContent=tile.dataset.cap||'';
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+  setPageInert(true);
+  lbClose.focus();
+}
+function closeLb(){
+  if(!lb.classList.contains('open'))return;
+  lb.classList.remove('open');
+  lbArt.replaceChildren();
+  document.body.style.overflow='';
+  setPageInert(false);
+  if(lastFocus) lastFocus.focus();
+}
 document.querySelectorAll('.tile').forEach(tile=>{
-  tile.setAttribute('tabindex','0');tile.setAttribute('role','button');
-  const open=()=>{
-    lastFocus=tile;
-    const photo=tile.querySelector('.tile-photo.loaded');
-    lbArt.innerHTML=photo
-      ? '<img src="'+photo.src+'" alt="'+(tile.dataset.cap||'')+'" style="width:100%;height:auto">'
-      : tile.querySelector('svg').outerHTML;
-    lbCap.textContent=tile.dataset.cap;
-    lb.classList.add('open');lbClose.focus();
-  };
-  tile.addEventListener('click',open);
-  tile.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
+  tile.setAttribute('tabindex','0');
+  tile.setAttribute('role','button');
+  tile.addEventListener('click',()=>openLb(tile));
+  tile.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(tile);}
+  });
 });
-function closeLb(){lb.classList.remove('open');if(lastFocus)lastFocus.focus();}
 lbClose.addEventListener('click',closeLb);
 lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
-addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.classList.contains('open'))closeLb();});
+addEventListener('keydown',e=>{
+  if(lb.classList.contains('open')&&e.key==='Tab'){
+    e.preventDefault();
+    lbClose.focus();
+  }
+  if(e.key==='Escape'){
+    if(lb.classList.contains('open')){closeLb();}
+    else if(nav.classList.contains('open')){closeNav();burger.focus();}
+  }
+});
 
 /* ---------- hero gold dust ---------- */
 const canvas=document.getElementById('dust'),ctx=canvas.getContext('2d');

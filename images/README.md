@@ -49,9 +49,9 @@ So you can add them one at a time, in any order.
 ## After adding images
 
 ```
-git -C C:\dev\test\idara-website add images
-git -C C:\dev\test\idara-website commit -m "Add real photography"
-git -C C:\dev\test\idara-website push
+git -C C:\dev\omniroute\idara-website add images
+git -C C:\dev\omniroute\idara-website commit -m "Add real photography"
+git -C C:\dev\omniroute\idara-website push
 ```
 
 The live site updates about 30 seconds later.

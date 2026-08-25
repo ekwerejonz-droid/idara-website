@@ -1078,8 +1078,12 @@ function mountPhoto(el,cls){
   img.decoding='async';img.loading='lazy';
   img.alt=el.dataset.cap||'IDARA commission';
   img.className=cls;
-  img.onload=()=>{el.appendChild(img);requestAnimationFrame(()=>img.classList.add('loaded'));};
-  img.onerror=()=>{};              // silent: keep the placeholder art
+  img.onload=()=>{requestAnimationFrame(()=>img.classList.add('loaded'));};
+  img.onerror=()=>{img.remove();};  // silent: keep the placeholder art
+  /* Attach BEFORE setting src: a lazy-loaded image that is not in the document
+     has no viewport position, so the browser defers it indefinitely and onload
+     never fires. In the DOM it starts at opacity 0 and .loaded fades it in. */
+  el.appendChild(img);
   img.src=src;
 }
 document.querySelectorAll('.tile[data-img]').forEach(t=>mountPhoto(t,'tile-photo'));

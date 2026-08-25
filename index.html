@@ -149,8 +149,8 @@ nav.scrolled{
   position:relative;padding:.3rem 0;transition:color .3s;white-space:nowrap;flex:none;
 }
 .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
-.nav-links a:hover{color:var(--gold)}
-.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left}
 /* flex:none is essential — .btn sets overflow:hidden, which turns the flex
    item's automatic min-width into 0 and lets the label clip ("Book a C…"). */
 .nav-cta{display:inline-flex;flex:none;padding:.85rem 1.6rem;font-size:.64rem;letter-spacing:.2em}
@@ -290,9 +290,13 @@ nav.scrolled{
 .coll{
   display:grid;grid-template-columns:.9fr 2.2fr 1.6fr auto;gap:2rem;align-items:center;
   padding:2.1rem 0;border-bottom:1px solid rgba(43,32,36,.16);
-  transition:padding .45s var(--ease),background .45s var(--ease);position:relative;
+  transition:padding .45s var(--ease),background .45s var(--ease),opacity .45s var(--ease);position:relative;
 }
 .coll:hover{padding-left:1.4rem;background:rgba(212,175,55,.06)}
+/* focus the hovered row by quietly dimming the others */
+.coll-rows:hover .coll{opacity:.5}
+.coll-rows:hover .coll:hover{opacity:1}
+@media (prefers-reduced-motion:reduce){.coll-rows:hover .coll{opacity:1}}
 .coll-no{font-family:var(--font-display);font-size:1rem;color:var(--gold-deep);letter-spacing:.2em}
 .coll h3{font-size:clamp(1.5rem,3vw,2.3rem);transition:color .4s}
 .coll:hover h3{color:var(--wine)}
@@ -406,6 +410,13 @@ nav.scrolled{
   opacity:0;transform:translateY(8px);transition:.5s var(--ease);
 }
 .tile:hover .tile-cap{opacity:1;transform:none}
+/* gallery stagger: each tile gets a small delay via JS data-i attribute */
+.tile[data-i="1"]{transition-delay:.05s}
+.tile[data-i="2"]{transition-delay:.12s}
+.tile[data-i="3"]{transition-delay:.18s}
+.tile[data-i="4"]{transition-delay:.24s}
+.tile[data-i="5"]{transition-delay:.30s}
+.tile[data-i="6"]{transition-delay:.36s}
 @media (max-width:900px){.masonry{columns:2}}
 @media (max-width:560px){.masonry{columns:1}}
 .lightbox{
@@ -1089,11 +1100,42 @@ function mountPhoto(el,cls){
 document.querySelectorAll('.tile[data-img]').forEach(t=>mountPhoto(t,'tile-photo'));
 document.querySelectorAll('.gram-cell[data-img]').forEach(c=>mountPhoto(c,''));
 
+/* ---------- gallery stagger: index each tile so CSS can cascade the reveal ---------- */
+document.querySelectorAll('#masonry .tile').forEach((t,i)=>{t.dataset.i=i+1;});
+
 /* ---------- reveal on scroll ---------- */
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});
 },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal,.step').forEach(el=>io.observe(el));
+
+/* ---------- active nav link tracks the section you're reading ----------
+   Uses the section whose top is nearest above the nav line, so short
+   sections and the final section both resolve correctly. */
+(function navSpy(){
+  const links=[...document.querySelectorAll('.nav-links a[href^="#"]')];
+  const map=links.map(a=>({a,sec:document.querySelector(a.getAttribute('href'))}))
+                 .filter(x=>x.sec);
+  if(!map.length)return;
+  let current=null;
+  function spy(){
+    const line=innerHeight*0.28;
+    let best=null;
+    for(const m of map){
+      const top=m.sec.getBoundingClientRect().top;
+      if(top<=line&&(!best||top>best.sec.getBoundingClientRect().top))best=m;
+    }
+    /* bottom of page: force the last section active */
+    if(innerHeight+scrollY>=document.body.scrollHeight-2)best=map[map.length-1];
+    if(best===current)return;
+    current=best;
+    links.forEach(a=>a.classList.remove('active'));
+    if(best)best.a.classList.add('active');
+  }
+  addEventListener('scroll',spy,{passive:true});
+  addEventListener('resize',spy,{passive:true});
+  spy();
+})();
 
 /* ---------- timeline progress line ---------- */
 const tl=document.getElementById('tl'),tlLine=document.getElementById('tlLine');

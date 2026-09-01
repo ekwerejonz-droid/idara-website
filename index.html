@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Security: CSP hardens the site against injected scripts, plugin abuse, base-tag
+     hijacking and off-site form posts. 'unsafe-inline' is required because the styles
+     and scripts are inlined (single-file build); the remaining directives still block
+     the highest-impact vectors. Note: frame-ancestors / X-Frame-Options and HSTS cannot
+     be set from a static GitHub Pages page (no response-header control), so clickjacking
+     protection would require moving to a host that allows custom headers. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>House of IDARA</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="IDARA — luxury gifting concierge. Bespoke gift curation, corporate gifting and white-glove delivery from Lagos to the world.">
@@ -590,7 +598,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
     <div class="hero-rule stage stage-2"></div>
     <p class="meaning stage stage-2">Idara <span style="color:var(--ivory-faint)">/ i·da·ra /</span> — Efik, <em>“something precious.”</em></p>
     <h1 class="display stage stage-3">Giving Something<br><span class="shimmer">Precious.</span></h1>
-    <p class="lede stage stage-4">For the people you cannot thank enough and the moments that must not pass quietly — IDARA curates, personalises and hand-delivers gifts of rare beauty, with the discretion of a private concierge.</p>
+    <p class="lede stage stage-4">For the people you cannot thank enough. IDARA curates, personalises and hand-delivers gifts of rare beauty — with a private concierge’s discretion.</p>
     <div class="hero-ctas stage stage-5">
       <a class="btn btn-solid" href="#contact"><span>Begin a Commission</span><span class="arr" aria-hidden="true">→</span></a>
       <a class="btn btn-ghost" href="#collections"><span>Explore the Collections</span></a>
@@ -613,9 +621,9 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
     <div>
       <p class="eyebrow reveal">The House of IDARA</p>
       <h2 class="h2 reveal reveal-d1" style="margin:1.1rem 0 1.6rem">A name inherited.<br>A standard upheld.</h2>
-      <p class="lede body-dim reveal reveal-d2">In the Efik language of Calabar — a culture whose hospitality was once the measure of a household’s honour — <em class="ital">idara</em> names the thing held dearest: something precious. We took the word as a promise. Every commission that leaves our atelier must be worthy of it.</p>
-      <p class="body-dim reveal reveal-d2" style="margin-top:1.4rem;max-width:38em">Founded in Lagos and serving clients across Nigeria and abroad, IDARA is a private gifting house: part curator, part confidant. We source from master artisans and storied maisons, compose each gift by hand, and deliver it with ceremony — so that what you give says what you mean.</p>
-      <blockquote class="mission-quote reveal reveal-d2">“Our mission is simple: that no gesture entrusted to us should ever feel ordinary — and no recipient should ever forget how it felt to receive it.”</blockquote>
+      <p class="lede body-dim reveal reveal-d2">In the Efik language of Calabar — where hospitality once measured a household’s honour — <em class="ital">idara</em> names the thing held dearest. We took it as a promise: every commission must be worthy of the word.</p>
+      <p class="body-dim reveal reveal-d2" style="margin-top:1.4rem;max-width:38em">A private gifting house in Lagos, serving Nigeria and the diaspora — part curator, part confidant. We source from master artisans, compose each gift by hand, and deliver it with ceremony.</p>
+      <blockquote class="mission-quote reveal reveal-d2">“No gesture entrusted to us should ever feel ordinary — and no one should forget how it felt to receive it.”</blockquote>
       <div class="pillars">
         <div class="pillar reveal">
           <svg class="glyph" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M13 2 24 13 13 24 2 13Z" stroke="currentColor" stroke-width="1.2"/></svg>
@@ -665,19 +673,19 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
       <article class="svc reveal">
         <svg class="glyph" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 11h22v15H4zM4 11l4-6h14l4 6M15 5v21M10.5 11c3-1.5 4.5-3.5 4.5-6 0 2.5 1.5 4.5 4.5 6" stroke="currentColor" stroke-width="1.1"/></svg>
         <h3>Bespoke Gift Curation</h3>
-        <p>A gift designed from a conversation — we learn the recipient, then compose something only they could have received.</p>
+        <p>Designed from a conversation. Composed for one person, never repeated.</p>
         <span class="svc-benefit">One-of-one · Never repeated</span>
       </article>
       <article class="svc reveal reveal-d1">
         <svg class="glyph" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M5 26V9l10-5 10 5v17M11 26v-8h8v8M5 26h20" stroke="currentColor" stroke-width="1.1"/></svg>
         <h3>Corporate Gifting</h3>
-        <p>Client appreciation, season’s gifting and milestone programmes, managed end-to-end for organisations at scale.</p>
+        <p>Client appreciation, season’s gifting, milestone programmes — managed end-to-end at scale.</p>
         <span class="svc-benefit">From 10 to 1,000 recipients</span>
       </article>
       <article class="svc reveal reveal-d2">
         <svg class="glyph" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 3v6M15 21v6M3 15h6M21 15h6M15 11a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z" stroke="currentColor" stroke-width="1.1"/></svg>
         <h3>Executive Gifting</h3>
-        <p>For chairmen, partners and principals: rare pieces, considered protocol, and gifting that honours seniority.</p>
+        <p>Rare pieces, considered protocol, gifting that honours seniority.</p>
         <span class="svc-benefit">Protocol-aware · Board-level</span>
       </article>
       <article class="svc reveal">
@@ -695,7 +703,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
       <article class="svc reveal reveal-d2">
         <svg class="glyph" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="11" cy="15" r="7" stroke="currentColor" stroke-width="1.1"/><circle cx="19" cy="15" r="7" stroke="currentColor" stroke-width="1.1"/></svg>
         <h3>Wedding &amp; Anniversary</h3>
-        <p>Trousseau gifting, in-law presentations, guest favours and anniversary rituals — designed with cultural fluency.</p>
+        <p>Trousseau, in-law presentations, guest favours — with cultural fluency.</p>
         <span class="svc-benefit">Traditional &amp; white weddings</span>
       </article>
       <article class="svc reveal">
@@ -707,13 +715,13 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
       <article class="svc reveal reveal-d1">
         <svg class="glyph" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="13" cy="13" r="9" stroke="currentColor" stroke-width="1.1"/><path d="m20 20 7 7" stroke="currentColor" stroke-width="1.1"/></svg>
         <h3>Concierge Shopping</h3>
-        <p>A discreet buyer for hard-to-find pieces — timepieces, fragrance, objets d’art — sourced and authenticated for you.</p>
+        <p>A discreet buyer for rare pieces — timepieces, fragrance, objets d’art.</p>
         <span class="svc-benefit">Sourced · Verified · Delivered</span>
       </article>
       <article class="svc reveal reveal-d2">
         <svg class="glyph" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M3 21h18l6-6M3 21l6-12h12l-2 8M3 21v4h22v-4" stroke="currentColor" stroke-width="1.1"/></svg>
         <h3>Delivery &amp; Presentation</h3>
-        <p>White-gloved couriers, wax-sealed notes and an unboxing designed as theatre — the last mile is half the gift.</p>
+        <p>White-gloved, precisely timed, unboxing as theatre.</p>
         <span class="svc-benefit">White-glove · Same-day Lagos</span>
       </article>
     </div>
@@ -728,7 +736,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
     <div class="coll-rows">
       <a class="coll reveal" href="#contact">
         <span class="coll-no">I</span>
-        <div><h3>The Royal Collection</h3><p>Our most rarefied tier — commissioned pieces, museum-grade craft and presentation worthy of a coronation.</p></div>
+        <div><h3>The Royal Collection</h3><p>Commissioned pieces, museum-grade craft — worthy of a coronation.</p></div>
         <span class="coll-price">From ₦2,500,000</span>
         <span class="arr" aria-hidden="true">→</span>
       </a>
@@ -740,24 +748,24 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
       </a>
       <a class="coll reveal" href="#contact">
         <span class="coll-no">III</span>
-        <div><h3>The Heritage Collection</h3><p>A love letter to Nigerian artistry — hand-woven textiles, bronze work and adire silk, curated with provenance.</p></div>
+        <div><h3>The Heritage Collection</h3><p>Hand-woven textiles, bronze work, adire silk — curated with provenance.</p></div>
         <span class="coll-price">From ₦450,000</span>
         <span class="arr" aria-hidden="true">→</span>
       </a>
       <a class="coll reveal" href="#contact">
         <span class="coll-no">IV</span>
-        <div><h3>Executive Excellence</h3><p>For the corner office: writing instruments, leather goods and considered pieces that respect the recipient’s rank.</p></div>
+        <div><h3>Executive Excellence</h3><p>Writing instruments, leather goods — pieces that respect the recipient’s rank.</p></div>
         <span class="coll-price">From ₦650,000</span>
         <span class="arr" aria-hidden="true">→</span>
       </a>
       <a class="coll reveal" href="#contact">
         <span class="coll-no">V</span>
-        <div><h3>The Celebration Collection</h3><p>Birthdays, graduations, new arrivals — joy, composed beautifully and delivered at exactly the right moment.</p></div>
+        <div><h3>The Celebration Collection</h3><p>Birthdays, graduations, new arrivals — joy, composed and delivered on time.</p></div>
         <span class="coll-price">From ₦250,000</span>
         <span class="arr" aria-hidden="true">→</span>
       </a>
     </div>
-    <p class="body-dim reveal" style="margin-top:2.4rem;font-size:.85rem">Every collection is a starting point, not a catalogue. Each commission is tailored in consultation.</p>
+    <p class="body-dim reveal" style="margin-top:2.4rem;font-size:.85rem">Each collection is a starting point — every commission is tailored in consultation.</p>
   </div>
 </section>
 
@@ -768,7 +776,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
       <div>
         <p class="eyebrow reveal">Corporate &amp; Institutional</p>
         <h2 class="h2 reveal reveal-d1" style="margin:1.1rem 0 1.4rem">Gifting is a<br>boardroom instrument.</h2>
-        <p class="body-dim reveal reveal-d2" style="max-width:34em">The right gift retains a client, honours a regulator’s boundaries, and makes a departing director feel seen. IDARA partners with Nigeria’s leading institutions — banks, energy firms, technology companies and professional practices — to make generosity strategic.</p>
+        <p class="body-dim reveal reveal-d2" style="max-width:34em">The right gift retains clients, respects boundaries, and makes a departing director feel seen. IDARA works with Nigeria’s leading institutions — banks, energy, technology, and professional practices.</p>
         <ul class="corp-list reveal reveal-d2">
           <li><b>CEOs &amp; Founders</b>Personal gifting managed like a private office function.</li>
           <li><b>Banks &amp; Finance</b>HNW client appreciation, compliant and discreet.</li>
@@ -783,7 +791,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
           <span class="case-tag">Case Study</span>
           <p class="eyebrow" style="letter-spacing:.3em;font-size:.6rem;color:var(--ivory-faint)">Private Bank · Lagos</p>
           <h3>Two hundred clients.<br>One unforgettable December.</h3>
-          <p>A leading private bank asked us to replace its generic year-end hampers. We designed three tiers of bespoke trunks — each with a handwritten note from the client’s relationship manager — sourced, assembled and delivered across four cities in nineteen days.</p>
+          <p>We designed three tiers of bespoke trunks — each with a handwritten note from the client’s relationship manager — delivered across four cities in nineteen days.</p>
           <div class="case-stats">
             <div class="stat"><b data-count="200">0</b><span>Bespoke trunks</span></div>
             <div class="stat"><b data-count="4">0</b><span>Cities served</span></div>
@@ -799,14 +807,14 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
       </div>
       <div class="pkg reveal reveal-d1">
         <h3>Bespoke Programme</h3><span class="pkg-sub">Project-based</span>
-        <p>A fully designed gifting programme: tiering, sourcing, personalisation and logistics for launches, closings and milestones.</p>
+        <p>A fully designed gifting programme: tiering, sourcing, personalisation, logistics — for launches, closings, milestones.</p>
       </div>
       <div class="pkg reveal reveal-d2">
         <h3>Retainer Concierge</h3><span class="pkg-sub">Annual</span>
-        <p>IDARA as your standing gifting office — a dedicated concierge, an annual calendar, and no occasion ever missed.</p>
+        <p>IDARA as your standing gifting office — a dedicated concierge, an annual calendar, no occasion missed.</p>
       </div>
     </div>
-    <p class="body-dim reveal" style="margin-top:2.6rem;font-size:.85rem;text-align:center">Inquiry process: a 30-minute discovery call → tailored proposal within 5 working days → dedicated account concierge.</p>
+    <p class="body-dim reveal" style="margin-top:2.6rem;font-size:.85rem;text-align:center">Inquiry: 30-minute discovery call → tailored proposal within 5 days → dedicated account concierge.</p>
   </div>
 </section>
 
@@ -815,15 +823,15 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
   <div class="wrap">
     <p class="eyebrow reveal">The IDARA Experience</p>
     <h2 class="h2 reveal reveal-d1" style="margin:1.1rem 0 1.4rem">Six movements,<br>one gesture.</h2>
-    <p class="lede body-dim reveal reveal-d2">Every commission follows the same quiet choreography — so that by the time the ribbon is untied, nothing has been left to chance.</p>
+    <p class="lede body-dim reveal reveal-d2">Every commission follows the same choreography — so that by the time the ribbon is untied, nothing has been left to chance.</p>
     <div class="tl" id="tl">
       <div class="tl-line" id="tlLine"></div>
-      <div class="step reveal"><span class="step-no">01</span><div><h3>Consultation</h3><p>A private conversation — in person, by call or over WhatsApp. We listen for the occasion, the recipient, and the feeling you want to leave behind.</p></div></div>
+      <div class="step reveal"><span class="step-no">01</span><div><h3>Consultation</h3><p>A private conversation — in person or over WhatsApp. We listen for the feeling you want to leave behind.</p></div></div>
       <div class="step reveal"><span class="step-no">02</span><div><h3>Curation</h3><p>Your concierge composes a proposal: pieces, provenance and presentation, with options at your chosen investment level.</p></div></div>
-      <div class="step reveal"><span class="step-no">03</span><div><h3>Personalisation</h3><p>Monograms, engraving, handwritten calligraphy, a recorded message — the details that make a gift unrepeatable.</p></div></div>
-      <div class="step reveal"><span class="step-no">04</span><div><h3>Packaging</h3><p>Wine-lacquered boxes, champagne silk, pressed wax seals. Our packaging is designed to be kept, not discarded.</p></div></div>
-      <div class="step reveal"><span class="step-no">05</span><div><h3>Delivery</h3><p>White-gloved, precisely timed, and — where the moment calls for it — staged as a surprise. We confirm the instant it lands.</p></div></div>
-      <div class="step reveal"><span class="step-no">06</span><div><h3>Follow-up</h3><p>A quiet note afterwards: how it was received, and a private record of the occasion so next year outdoes this one.</p></div></div>
+      <div class="step reveal"><span class="step-no">03</span><div><h3>Personalisation</h3><p>Monograms, engraving, handwritten calligraphy — the details that make a gift unrepeatable.</p></div></div>
+      <div class="step reveal"><span class="step-no">04</span><div><h3>Packaging</h3><p>Wine-lacquered boxes, champagne silk, pressed wax seals. Packaging designed to be kept.</p></div></div>
+      <div class="step reveal"><span class="step-no">05</span><div><h3>Delivery</h3><p>White-gloved, precisely timed — and where the moment calls for it, staged as a surprise.</p></div></div>
+      <div class="step reveal"><span class="step-no">06</span><div><h3>Follow-up</h3><p>A quiet note: how it was received, and a private record for next year.</p></div></div>
     </div>
   </div>
 </section>
@@ -936,11 +944,11 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
     <p class="eyebrow reveal" style="text-align:center">Questions, Answered</p>
     <h2 class="h2 reveal reveal-d1" style="text-align:center;margin-top:1.1rem">Before you ask</h2>
     <div class="faq-list">
-      <details class="faq reveal"><summary>How far in advance should I commission a gift?<span class="faq-x" aria-hidden="true"></span></summary><div class="faq-body"><p>Bespoke commissions are best begun 2–3 weeks ahead; corporate programmes, 4–8 weeks. That said, our concierge desk regularly performs quiet miracles on 48 hours’ notice — ask.</p></div></details>
-      <details class="faq reveal"><summary>Do you deliver outside Lagos and Abuja?<span class="faq-x" aria-hidden="true"></span></summary><div class="faq-body"><p>Yes. We deliver white-glove across Nigeria’s major cities and ship internationally via insured courier partners, with the same presentation standards wherever the gift lands.</p></div></details>
-      <details class="faq reveal"><summary>What is the minimum investment?<span class="faq-x" aria-hidden="true"></span></summary><div class="faq-body"><p>Celebration Collection commissions begin at ₦250,000. Fully bespoke work is quoted per brief. We are candid about what a budget can achieve beautifully — and we never pad.</p></div></details>
-      <details class="faq reveal"><summary>Can you keep the sender — or the surprise — confidential?<span class="faq-x" aria-hidden="true"></span></summary><div class="faq-body"><p>Discretion is a house rule, not a request. Anonymous gifting, sealed notes, unmarked delivery and strict confidentiality around occasions and budgets are all standard.</p></div></details>
-      <details class="faq reveal"><summary>Do you handle corporate branding and compliance?<span class="faq-x" aria-hidden="true"></span></summary><div class="faq-body"><p>Yes — discreet co-branding, per-recipient value caps for regulated industries, itemised documentation for procurement, and gifting registers where policy requires them.</p></div></details>
+      <details class="faq reveal"><summary>How far in advance should I commission a gift?<span class="faq-x" aria-hidden="true"></span></summary><div class="faq-body"><p>Bespoke: 2–3 weeks. Corporate: 4–8 weeks. Concierge desk can perform miracles on 48 hours’ notice — ask.</p></div></details>
+      <details class="faq reveal"><summary>Do you deliver outside Lagos and Abuja?<span class="faq-x" aria-hidden="true"></span></summary><div class="faq-body"><p>Yes — white-glove delivery across Nigeria’s major cities and international shipping via insured partners, with the same presentation standards wherever the gift lands.</p></div></details>
+      <details class="faq reveal"><summary>What is the minimum investment?<span class="faq-x" aria-hidden="true"></span></summary><div class="faq-body"><p>Celebration Collection starts at ₦250,000. Bespoke work is quoted per brief. We are candid about what a budget can achieve — and we never pad.</p></div></details>
+      <details class="faq reveal"><summary>Can you keep the sender — or the surprise — confidential?<span class="faq-x" aria-hidden="true"></span></summary><div class="faq-body"><p>Discretion is a house rule. Anonymous gifting, sealed notes, unmarked delivery, and confidentiality around occasions and budgets — all standard.</p></div></details>
+      <details class="faq reveal"><summary>Do you handle corporate branding and compliance?<span class="faq-x" aria-hidden="true"></span></summary><div class="faq-body"><p>Yes — discreet co-branding, per-recipient value caps, itemised documentation for procurement, and gifting registers where policy requires them.</p></div></details>
       <details class="faq reveal"><summary>What if the recipient’s tastes are a mystery?<span class="faq-x" aria-hidden="true"></span></summary><div class="faq-body"><p>That is precisely our craft. A short consultation — who they are, how they live, what they never buy themselves — gives us enough. Learning the recipient is the service.</p></div></details>
     </div>
   </div>
@@ -953,7 +961,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
     <h2 class="h2 reveal reveal-d1" style="margin-top:1.1rem">Tell us who it’s for.<br><span class="ital" style="color:var(--gold-soft)">We’ll make it precious.</span></h2>
     <div class="contact-grid">
       <div class="reveal reveal-d1">
-        <p class="body-dim" style="max-width:30em;margin-bottom:2rem">Reach us however feels natural — the form, a WhatsApp message, or a scheduled consultation. A concierge responds within one business hour, 8:00–20:00 WAT.</p>
+        <p class="body-dim" style="max-width:30em;margin-bottom:2rem">Reach us however feels natural — the form, WhatsApp, or a scheduled consultation. A concierge responds within one business hour, 8:00–20:00 WAT.</p>
         <div class="chan">
           <a href="https://wa.me/2348134796912" rel="noopener">
             <svg class="glyph" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" stroke="currentColor" stroke-width="1.2"/><path d="M9 8.5c0 4 2.5 6.5 6.5 6.5l1-2-2.2-1-1 .8c-1-.5-1.8-1.3-2.3-2.3l.8-1-1-2.2-1.8 1.2Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
@@ -1004,7 +1012,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
         <p class="eyebrow reveal">Follow the House</p>
         <h2 class="h2 reveal reveal-d1" style="margin-top:1.1rem">Lately, from the atelier.</h2>
       </div>
-      <a class="gram-handle reveal reveal-d2" href="https://instagram.com/idara_gifting" rel="noopener" target="_blank">
+      <a class="gram-handle reveal reveal-d2" href="https://instagram.com/idara_gifting" rel="noopener noreferrer" target="_blank">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.3"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
         @idara_gifting
       </a>
@@ -1040,7 +1048,7 @@ footer{background:#150307;border-top:1px solid var(--gold-hairline);padding:4.2r
           </svg>
           <span class="logo-word">IDARA</span>
         </a>
-        <p><em class="ital serif">Idara</em> — Efik, “something precious.” A luxury gifting concierge, founded in Lagos, at home anywhere a gesture matters.</p>
+        <p><em class=”ital serif”>Idara</em> — Efik, “something precious.” A luxury gifting concierge, founded in Lagos.</p>
       </div>
       <div>
         <h4>House</h4>
